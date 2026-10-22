@@ -38,7 +38,6 @@ public class Szostka {
             int y = zestaw.get(i);
             if (liczby.contains(y)){
                 powtorz = 0;
-                continue;
             }
             else {
                 powtorz = 1;
