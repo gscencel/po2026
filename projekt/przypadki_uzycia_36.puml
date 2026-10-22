@@ -1,15 +1,23 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+left to right direction
 
-autonumber
+package "System obsługi awarii miejskiej infrastruktury"{
+	package "Panel użytkownika"{
+		usecase "Zaloguj się" as UC_login
+		usecase "Zgłoś awarię" as UC_report
+		usecase "Sprawdź staus awarii" as UC_check
+	}
+	package "Zarządzanie użytkownikami"{
+		usecase "Usuń użytkownika" as UC_deluser
+		usecase "Dodaj użytkownika" as UC_adduser
+		usecase "Zobacz dane użytkownika" as UC_showuser
 
-== Initialization ==
+	}	
+	package "Zarządzanie zgłoszeniami"{
+		usecase "Zobacz zgłoszenia" as UC_look
+	}
+}
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
 
-== Repetition ==
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
 @enduml
