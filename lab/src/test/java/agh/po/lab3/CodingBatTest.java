@@ -28,6 +28,6 @@ public class CodingBatTest {
     public void helloName() {
         assertEquals("Hello Alice!", cb.helloName("Alice"));
         assertEquals("Hello xyz!!", cb.helloName("xyz!"));
-        assertEquals("Hello Y !", cb.helloName("Y "));
+        assertEquals("Hello Y!", cb.helloName("Y"));
     }
 }

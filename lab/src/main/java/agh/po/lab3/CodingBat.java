@@ -48,7 +48,7 @@ public class CodingBat {
         CodingBat cb = new CodingBat();
         boolean wynik = cb.sleepIn(true, false);
         boolean malpy = cb.monkeyTrouble(true,false);
-        int policz = cb.countEvens(new int[]{5,2,7,8,2,0,4,1});
+        int policz = cb.countEvens(new int[]{5,2,7,8,2,0,4,1,6});
         String witaj = cb.helloName("Mścisław");
         System.out.println(wynik);
         System.out.println(malpy);
