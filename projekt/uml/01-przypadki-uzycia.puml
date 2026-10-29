@@ -1,38 +1,61 @@
 @startuml
 left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
 
-' TODO: zastąpcie "Użytkownik" właściwą nazwą aktora (np. Klient, Pracownik,
-' Administrator...) i dodajcie kolejnych aktorów, jeśli ich macie więcej.
-actor "Użytkownik" as User
+actor "Mieszkaniec" as Mieszkaniec
+actor "Dyspozytor" as Dyspozytor
+actor "Pracownik Ekipy" as Ekipa
 
-package "Nazwa waszej aplikacji" {
-
-    ' TODO: to są tylko przykładowe, generyczne przypadki użycia.
-    ' Zastąpcie je / dopiszcie własne, dopasowane do waszego tematu projektu.
+rectangle "System Obsługi Zgłoszeń Awarii Miejskiej Infrastruktury" {
+  
+  ' Przypadki dla Mieszkańca
+  package "Panel użytkownika" {
     usecase "Zaloguj się" as UC_Login
-    usecase "Przeglądaj dane" as UC_Browse
-    usecase "Dodaj nowy element" as UC_Add
-    usecase "Edytuj istniejący element" as UC_Edit
-    usecase "Usuń element" as UC_Delete
+    usecase "Zgłoszenie awarii" as UC_Zgloszenie
+    usecase "Śledzenie statusu zgłoszenia" as UC_Status
+  }
 
-    User --> UC_Login
-    User --> UC_Browse
-    User --> UC_Add
-    User --> UC_Edit
-    User --> UC_Delete
+  ' Przypadki dla Dyspozytora (Obsługa + Administracja)
+  package "Panel dyspozytora" {
+    package "Zarządzanie zgłoszeniami" {
+      usecase "Weryfikacja zgłoszenia" as UC_Weryfikacja
+      usecase "Odrzucenie zgłoszenia" as UC_Odrzucenie
+      usecase "Zmiana priorytetu awarii" as UC_Priorytet
+      usecase "Przydzielenie zadania do ekipy" as UC_Przydzial
+    }
+    package "Zarządzanie użytkownikami" {
+      usecase "Zarządzanie kontami użytkowników" as UC_Konta
+    }
+  }
 
-    ' Przykład relacji <<include>> — UC_Add zawsze wymaga bycia zalogowanym.
-    UC_Add .> UC_Login : <<include>>
-    UC_Edit .> UC_Login : <<include>>
-    UC_Delete .> UC_Login : <<include>>
+  ' Przypadki dla Ekipy Technicznej
+  package "Panel ekipy technicznej" {
+    usecase "Podgląd przypisanych zadań" as UC_Zadania
+    usecase "Zmiana statusu realizacji" as UC_ZmianaStatusu
+    usecase "Dodanie dokumentacji po naprawie" as UC_Dokumentacja
+  }
 }
 
-' Wskazówki:
-' - left to right direction układa aktorów po lewej, przypadki po prawej
-'   (czytelniejsze przy więcej niż 1 aktorze).
-' - <<include>> = przypadek ZAWSZE wywołuje inny jako swoją część.
-' - <<extend>> = przypadek OPCJONALNIE rozszerza inny, tylko w pewnych warunkach.
-' - Grupujcie powiązane przypadki użycia w podpakiety (package "Nazwa grupy" { ... }),
-'   jeśli macie ich więcej niż 5-6 — tak jak w materiale z zajęć (system biblioteczny).
+' Relacje Mieszkańca
+Mieszkaniec --> UC_Login
+Mieszkaniec --> UC_Zgloszenie
+Mieszkaniec --> UC_Status
+
+' Wymóg logowania dla operacji Mieszkańca
+UC_Zgloszenie .> UC_Login : <<include>>
+UC_Status .> UC_Login : <<include>>
+
+' Relacje Dyspozytora
+Dyspozytor --> UC_Weryfikacja
+Dyspozytor --> UC_Odrzucenie
+Dyspozytor --> UC_Priorytet
+Dyspozytor --> UC_Przydzial
+Dyspozytor --> UC_Konta
+
+' Relacje Ekipy
+Ekipa --> UC_Zadania
+Ekipa --> UC_ZmianaStatusu
+UC_ZmianaStatusu .> UC_Dokumentacja : <<include>>
 
 @enduml

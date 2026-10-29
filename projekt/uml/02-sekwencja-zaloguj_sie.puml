@@ -1,0 +1,43 @@
+@startuml
+skinparam actorStyle awesome
+autonumber
+
+title Przypadek użycia: Zaloguj się (Mieszkaniec)
+
+actor "Mieszkaniec" as Mieszkaniec
+participant "WidokLogowania" as Widok
+participant "SerwisAutoryzacji" as Serwis
+participant "RepozytoriumUzytkownikow" as Repo
+entity "Plik JSON\n(uzytkownicy.json)" as Plik
+
+Mieszkaniec -> Widok : wprowadzDane(login, haslo)
+activate Widok
+
+Widok -> Serwis : zaloguj(login, haslo)
+activate Serwis
+
+Serwis -> Repo : pobierzUzytkownika(login)
+activate Repo
+
+Repo -> Plik : odczytajDane()
+activate Plik
+Plik --> Repo : dane uzytkownikow (JSON)
+deactivate Plik
+
+Repo --> Serwis : uzytkownik
+deactivate Repo
+
+Serwis -> Serwis : weryfikujHaslo(haslo)
+
+alt poprawne dane logowania
+    Serwis --> Widok : wynik (sukces)
+    Widok --> Mieszkaniec : wyswietlPanelMieszkanca()
+else błędne dane logowania
+    Serwis --> Widok : wynik (błąd)
+    Widok --> Mieszkaniec : wyswietlKomunikatOBledzie()
+end
+
+deactivate Serwis
+deactivate Widok
+
+@enduml
