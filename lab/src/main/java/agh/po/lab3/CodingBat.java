@@ -20,10 +20,10 @@ public class CodingBat {
         if (!aSmile && !bSmile){
             return true;
         }
-        if (aSmile && bSmile){
+        else if (aSmile && bSmile){
             return true;
         }
-        if (!aSmile && bSmile){
+        else if (!aSmile && bSmile){
             return false;
         }
         return false;
