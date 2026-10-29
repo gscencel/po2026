@@ -9,12 +9,16 @@ public class CodingBatTest {
     public void sleepIn() {
         assertEquals(false, cb.sleepIn(true, false));
         assertEquals(true, cb.sleepIn(false, false));
+        assertEquals(true, cb.sleepIn(true, true));
+        assertEquals(true, cb.sleepIn(false, true));
     }
 
     @org.junit.Test
     public void monkeyTrouble() {
         assertEquals(false, cb.monkeyTrouble(false, true));
         assertEquals(true, cb.monkeyTrouble(false,false));
+        assertEquals(false, cb.monkeyTrouble(true, false));
+        assertEquals(true, cb.monkeyTrouble(true,false));
     }
 
     @org.junit.Test
