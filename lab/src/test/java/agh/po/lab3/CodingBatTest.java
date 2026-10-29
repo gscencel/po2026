@@ -18,7 +18,7 @@ public class CodingBatTest {
         assertEquals(false, cb.monkeyTrouble(false, true));
         assertEquals(true, cb.monkeyTrouble(false,false));
         assertEquals(false, cb.monkeyTrouble(true, false));
-        assertEquals(true, cb.monkeyTrouble(true,false));
+        assertEquals(true, cb.monkeyTrouble(true,true));
     }
 
     @org.junit.Test
