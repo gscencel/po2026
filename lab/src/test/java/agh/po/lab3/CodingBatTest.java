@@ -1,5 +1,11 @@
 package agh.po.lab3;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class CodingBatTest {
@@ -33,5 +39,49 @@ public class CodingBatTest {
         assertEquals("Hello Alice!", cb.helloName("Alice"));
         assertEquals("Hello xyz!!", cb.helloName("xyz!"));
         assertEquals("Hello Y!", cb.helloName("Y"));
+    }
+
+    @Test
+    public void mapAB2() {
+        Map<String, String> mapa1 = new HashMap<String, String>();
+        mapa1.put("a", "aaa");
+        mapa1.put("b", "aaa");
+        mapa1.put("c", "cake");
+
+        Map<String, String> mapa2 = new HashMap<String, String>();
+        mapa2.put("a", "aaa");
+        mapa2.put("b", "bbb");
+
+        Map<String, String> mapa3 = new HashMap<String, String>();
+        mapa3.put("a", " ");
+        mapa3.put("b", " ");
+        mapa3.put("d", "abc");
+
+        Map<String, String> mapa11 = new HashMap<String, String>();
+        mapa11 = mapa1;
+        mapa11.remove("a");
+
+        Map<String, String> mapa12 = new HashMap<String, String>();
+        mapa12 = mapa11;
+        mapa12.remove("b");
+
+        Map<String, String> mapa31 = new HashMap<String, String>();
+        mapa31 = mapa3;
+        mapa31.remove("a");
+
+        Map<String, String> mapa32 = new HashMap<String, String>();
+        mapa32 = mapa31;
+        mapa32.remove("b");
+
+        assertEquals(mapa12, cb.mapAB2(mapa1));
+        assertEquals(mapa2, cb.mapAB2(mapa2));
+        assertEquals(mapa32, cb.mapAB2(mapa3));
+    }
+
+    @Test
+    public void wordCount() {
+        assertEquals(Map.of("a", 2, "b", 2, "c", 1), cb.wordCount(new String[]{"a", "b", "a", "c", "b"}));
+        assertEquals(Map.of("a", 1, "b", 1, "c", 1), cb.wordCount(new String[]{"c", "b", "a"}));
+        assertEquals(Map.of("c", 4), cb.wordCount(new String[]{"c", "c", "c", "c"}));
     }
 }

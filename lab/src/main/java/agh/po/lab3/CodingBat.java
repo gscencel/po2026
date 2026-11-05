@@ -1,6 +1,8 @@
 package agh.po.lab3;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CodingBat {
     public boolean sleepIn(boolean weekday, boolean vacation) {
@@ -44,6 +46,30 @@ public class CodingBat {
         return napis;
     }
 
+    public Map<String, String> mapAB2(Map<String, String> map) {
+        if ((map.containsKey("a") && map.containsKey("b")) && (map.get("a") == map.get("b"))){
+            map.remove("a");
+            map.remove("b");
+        }
+        return map;
+    }
+
+    public Map<String, Integer> wordCount(String[] strings) {
+        Map<String, Integer> policzone = new HashMap<String, Integer>();
+        for (int i=0; i < strings.length; i++){
+            if (policzone.containsKey(strings[i])){
+                int x = policzone.get(strings[i]) + 1;
+                policzone.remove(strings[i]);
+                policzone.put(strings[i], x);
+            }
+            else{
+                policzone.put(strings[i], 1);
+            }
+        }
+        return policzone;
+    }
+
+
     public static void main(String[] args) {
         CodingBat cb = new CodingBat();
         boolean wynik = cb.sleepIn(true, false);
@@ -54,5 +80,16 @@ public class CodingBat {
         System.out.println(malpy);
         System.out.println(policz);
         System.out.println(witaj);
+
+        Map<String, String> mapa = new HashMap<String, String>();
+        mapa.put("a", "aaa");
+        mapa.put("b", "aaa");
+        mapa.put("c", "cake");
+        System.out.println(mapa);
+        System.out.println(cb.mapAB2(mapa));
+
+        System.out.println(cb.wordCount(new String[]{"a", "b", "a", "c", "b"}));
+        System.out.println(cb.wordCount(new String[]{"c", "b", "a"}));
+        System.out.println(cb.wordCount(new String[]{"c", "c", "c", "c"}));
     }
 }
