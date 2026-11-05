@@ -59,7 +59,6 @@ public class CodingBat {
         for (int i=0; i < strings.length; i++){
             if (policzone.containsKey(strings[i])){
                 int x = policzone.get(strings[i]) + 1;
-                policzone.remove(strings[i]);
                 policzone.put(strings[i], x);
             }
             else{
