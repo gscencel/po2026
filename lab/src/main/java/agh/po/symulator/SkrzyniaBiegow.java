@@ -13,14 +13,20 @@ public class SkrzyniaBiegow extends Komponent{
     }
 
     public void zwiekszBieg(){
-        if ((aktualnyBieg < iloscBiegow) && (sprzeglo.getStan())){
-            aktualnyBieg = aktualnyBieg + 1;
+        if (aktualnyBieg < iloscBiegow){
+            if (!sprzeglo.getStan()){
+                throw new IllegalStateException("Sprzęgło musi być wciśnięte!");
+            }
+            aktualnyBieg += 1;
         }
     }
 
     public void zmniejszBieg(){
-        if ((aktualnyBieg > -1) && (sprzeglo.getStan())){
-            aktualnyBieg = aktualnyBieg - 1;
+        if (aktualnyBieg > -1){
+            if (!sprzeglo.getStan()){
+                throw new IllegalStateException("Sprzęgło musi być wciśnięte!");
+            }
+            aktualnyBieg -= 1;
         }
     }
 
@@ -32,5 +38,9 @@ public class SkrzyniaBiegow extends Komponent{
         return aktualnePrzelozenie;
     }
 
+    public static void main(String[] args){
+        SkrzyniaBiegow skrzynia = new SkrzyniaBiegow(4, new Sprzeglo());
+        skrzynia.zwiekszBieg();
+    }
 
 }

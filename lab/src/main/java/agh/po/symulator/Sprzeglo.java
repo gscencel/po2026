@@ -4,7 +4,7 @@ public class Sprzeglo extends Komponent{
     boolean stanSprzegla;
 
     Sprzeglo(){
-        stanSprzegla = false;
+        this.stanSprzegla = false;
     }
 
     public void wcisnij(){

@@ -9,7 +9,7 @@ public class Pozycja {
         this.y = y;
     }
 
-    void przemiesc(double dt, double v, Pozycja cel){
+    public void przemiesc(double dt, double v, Pozycja cel){
         if ((dt>0) && (v>0) && (cel.x != this.x) && (cel.y != this.y)) {
             double odleglosc = Math.sqrt(Math.pow(cel.x - this.x, 2) + Math.pow(cel.y - this.y, 2));
             double dx = v * dt * (cel.x - this.x) / odleglosc;
@@ -26,23 +26,22 @@ public class Pozycja {
         }
     }
 
-    String getPozycja(){
+    public String getPozycja(){
         String napis = "Aktualna pozycja to: " + x + ", " + y;
         return napis;
     }
 
-    double getX(){
+    public double getX(){
         return x;
     }
 
-    double getY(){
+    public double getY(){
         return y;
     }
 
     public static void main(String[] args){
-        Pozycja polozenie = new Pozycja(3,5);
-        polozenie.przemiesc(100, 0.1, new Pozycja(24, 51));
-        polozenie.przemiesc(100, 0.1, new Pozycja(24, 51));
+        Pozycja polozenie = new Pozycja(0,0);
+        polozenie.przemiesc(100, 0.1, new Pozycja(30, 50));
         System.out.println(polozenie.getX());
         System.out.println(polozenie.getY());
     }
